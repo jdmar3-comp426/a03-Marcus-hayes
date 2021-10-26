@@ -19,10 +19,16 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+    avgMpg: mpg_data.reduce( (ttl, next) => {
+        return (ttl + (( next.city_mpg + next.highway_mpg ) / 2) / mpg_data.length);
+    }, 0),
+    allYearStats: getStatistics( mpg_data.map( (e) => e.year)),
+    ratioHybrids: mpg_data.filter( 
+        function(e) {
+            return e.hybrid;
+        }).length / mpg_data.length
 };
 
 
@@ -84,6 +90,48 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
-    avgMpgByYearAndHybrid: undefined
-};
+    makerHybrids: mpg_data.filter((v,i,a) => a.findIndex(t=>(t.make === v.make))===i)
+        .map(function(v, i, a) {
+            var hybs = mpg_data.filter((e) => (e.hybrid && e.make === v.make)).map((e) => e.id)
+                .sort().reverse();
+            return {
+                "make": v.make,
+                "hybrids": hybs
+            }
+        }).filter((e) => e.hybrids.length > 0),
+    avgMpgByYearAndHybrid: mpg_data.filter((v,i,a) => a.findIndex(t=>(t.year === v.year))===i)
+        .map(function(v, i, a) {
+          var obj = {};
+          var nothyb_city = 0;
+          var nothyb_hwy = 0;
+          var hyb_city = 0;
+          var hyb_hwy = 0;
+          var nothyb_cnt = 0;
+          var hyb_cnt = 0;
+
+          mpg_data.forEach(function(e) {
+            if(e.year === v.year && e.hybrid) {
+                    hyb_city += e.city_mpg;
+                    hyb_hwy += e.highway_mpg;
+                    hyb_cnt += 1;
+            } else {
+                nothyb_city += e.city_mpg;
+                nothyb_hwy += e.highway_mpg;
+                nothyb_cnt += 1;
+            }
+          });
+
+          obj[v.year] = {
+            "hybrid": {
+                "city": hyb_city/hyb_cnt,
+                "highway": hyb_hwy/hyb_cnt
+            },
+            "notHybrid": {
+                "city": nothyb_city/nothyb_cnt,
+                "highway": nothyb_hwy/nothyb_cnt
+            }
+          }
+          return obj;
+        }
+    )
+}

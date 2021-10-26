@@ -29,10 +29,7 @@ export function identifyVariable(variable) {
 export function identifyArray(array) {
    var typeArr = []
    for(var i=0; i<array.length; i++) {
-      typeArr[i] = {
-         type: typeof(array[i]),
-         value: array[i]
-      };
+      typeArr[i] = identifyVariable(array[i]);
    }
    return typeArr;
 }
@@ -54,7 +51,7 @@ export function identifyArray(array) {
  obj now does not contain the `password` field
  */
 export function removeKey(object, key) {
-   delete obj[key];
+   delete object[key];
 }
 
 /**
@@ -105,4 +102,5 @@ export function removeKeys(object, keyList) {
    for(var i=0; i<keyList.length; i++) {
       delete objClone[keyList[i]];
    }
+   return objClone;
 }

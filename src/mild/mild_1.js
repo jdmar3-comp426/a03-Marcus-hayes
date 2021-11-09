@@ -46,7 +46,7 @@ export function maxAndMin(numbers) {
     if(numbers.length == 0) return {min, max};
     min = Math.min(...numbers);
     max = Math.max(...numbers);
-    return {min, max}
+    return {max, min}
 }
 
 /**

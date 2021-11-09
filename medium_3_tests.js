@@ -3,18 +3,18 @@ import mpg_data from "./src/medium/data/mpg_data.js";
 
 console.log('Reference Array Length: ' + mpg_data.length);
 
-console.log(searchHighPower(mpg_data, 10, 15).length);
-console.log(searchHighPower(mpg_data, 200, 15).length);
-console.log(searchHighPower(mpg_data, 150, 400).length);
-console.log(searchHighPower(mpg_data, 300, 400).length);
+// console.log(searchHighPower(mpg_data, 10, 15).length);
+// console.log(searchHighPower(mpg_data, 200, 15).length);
+// console.log(searchHighPower(mpg_data, 150, 400).length);
+// console.log(searchHighPower(mpg_data, 300, 400).length);
 
-console.log(searchMpg(mpg_data, 10, 10).length);
-console.log(searchMpg(mpg_data, 15, 30).length);
-console.log(searchMpg(mpg_data, 20, 40).length);
-console.log(searchMpg(mpg_data, 15, 30).length);
+// console.log(searchMpg(mpg_data, 10, 10).length);
+// console.log(searchMpg(mpg_data, 15, 30).length);
+// console.log(searchMpg(mpg_data, 20, 40).length);
+// console.log(searchMpg(mpg_data, 15, 30).length);
 
-console.log(searchName(mpg_data, 'taurus').length);
-console.log(searchName(mpg_data, 'SEL').length);
+// console.log(searchName(mpg_data, 'taurus').length);
+// console.log(searchName(mpg_data, 'SEL').length);
 
 console.log(searchByYear(mpg_data, [2010]).length);
 console.log(searchByYear(mpg_data, [2011]).length);

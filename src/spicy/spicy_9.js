@@ -15,12 +15,12 @@
  *                from calling the function
  */
 export const repeat = (fn, n, ...params) => {
-    var res = [];
+    // var res = [];
     for(let i=0; i<n; i++) {
         let t = fn(params);
-        if(t) res.push(t)
+        // if(t) res.push(t)
     }
-    return res;
+    // return res;
 };
 
 
@@ -157,8 +157,8 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-    p = []
-    f = []
+    p = [];
+    f = [];
     for(let i=0; i<arr.length; i++) {
         if(test(arr[i])) {
             p.push(arr[i]);
@@ -219,11 +219,5 @@ export const hasExactly = (arr, test, n) => {
     }
 
     if(idx < n) return false;
-
-    console.log(idx);
-    if(idx === n) {
-        return true;
-    } else {
-        return false;
-    }
+    return true;
 };

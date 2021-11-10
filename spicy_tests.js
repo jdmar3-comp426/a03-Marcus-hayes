@@ -3,7 +3,7 @@ import { repeat, repeatDemo, multiplyBy, tenTimes,
     filter, allEvensAreOdd, anEvenIsOdd,
     hasExactly } from "./src/spicy/spicy_9";
 
-// repeatDemo();
+repeatDemo();
 
 // console.log(multiplyBy(2)(5));
 // console.log(multiplyBy(4)(3));

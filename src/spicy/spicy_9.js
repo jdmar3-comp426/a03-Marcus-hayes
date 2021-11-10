@@ -17,8 +17,10 @@
 export const repeat = (fn, n, ...params) => {
     var res = [];
     for(let i=0; i<n; i++) {
-        res.push(fn(params));
+        let t = fn(params);
+        if(t) res.push(t)
     }
+    return res;
 };
 
 
@@ -155,12 +157,19 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
+    p = []
+    f = []
     for(let i=0; i<arr.length; i++) {
-        if(i%2 === 1 && !test(arr[i])) {
-            return false;
+        if(test(arr[i])) {
+            p.push(arr[i]);
+        } else {
+            f.push(arr[i]);
         }
     }
-    return true;
+    return {
+        pass : p,
+        fail: f
+    };
 };
 
 
@@ -203,10 +212,13 @@ export const anEvenIsOdd = (arr) => {
 export const hasExactly = (arr, test, n) => {
     var idx = 0;
     for(let i=0; i<arr.length; i++) {
+        if(idx > n) return false;
         if(test(arr[i])) {
             idx++;
         }
     }
+
+    if(idx < n) return false;
 
     console.log(idx);
     if(idx === n) {

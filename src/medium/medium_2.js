@@ -21,9 +21,17 @@ see under the methods section
  */
 
 export const allCarStats = {
-    avgMpg: mpg_data.reduce( (ttl, next) => {
-        return (ttl + (( next.city_mpg + next.highway_mpg ) / 2) / mpg_data.length);
-    }, 0),
+    avgMpg: mpg_data.reduce((target) => {
+        let highway_avg = mpg_data.reduce( (ttl, next) => {
+            return ttl + next.highway_mpg;
+            }, 0)/mpg_data.length;
+        let city_avg = mpg_data.reduce( (ttl, next) => {
+            return ttl + next.city_mpg;
+            }, 0)/mpg_data.length;
+        target["city"] = city_avg;
+        target["highway"] = highway_avg;
+        return target;
+    }, {}),
     allYearStats: getStatistics( mpg_data.map( (e) => e.year)),
     ratioHybrids: mpg_data.filter( 
         function(e) {
